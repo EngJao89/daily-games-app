@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Image from 'next/image'
+import Image from 'next/image';
+import { LiaGamepadSolid } from "react-icons/lia";
 
-import logo from "../../public/logo.svg"
+import logo from "../../public/logo.svg";
 
 export function Header() {
   return (
@@ -19,6 +20,12 @@ export function Header() {
           Perfil
         </Link>
         </nav>
+
+        <div className="hidden sm:flex justify-center items-center">
+          <Link href="/">
+            <LiaGamepadSolid size={34} color="#475569" />
+          </Link>
+        </div>
       </div>
     </header>
   )
