@@ -4,6 +4,7 @@ import { BsArrowRightSquare } from "react-icons/bs";
 import { Container } from "@radix-ui/themes";
 
 import { GameProps } from "@/utils/types/game";
+import { Input } from "@/components/Input";
 
 async function getDalyGame(){
   try{
@@ -45,6 +46,8 @@ export default async function Home() {
             </div>
           </section>
         </Link>
+
+        <Input />
       </Container>
     </main>
   );
