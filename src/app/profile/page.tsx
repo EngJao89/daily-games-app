@@ -1,8 +1,15 @@
 import Image from 'next/image'
+import type { Metadata } from "next";
 import { FaShareAlt } from 'react-icons/fa'
 import { Container } from "@radix-ui/themes";
 import userImg from '../../../public/user.png'
+import { FavoriteCard } from './components/favorite';
 
+
+export const metadata: Metadata = {
+  title: "Meu perfil - Daly Games sua plataforma de jogos!",
+  description: "Perfil Sujeito Programador | Daly Games sua plataforma de jogos!"
+}
 
 export default function Profile() {
   return (
@@ -18,7 +25,7 @@ export default function Profile() {
               className="rounded-full w-56 h-56 object-cover"
             />
 
-            <h1 className="font-bold text-2xl">João Ricardo[Dev]</h1>
+            <h1 className="font-bold text-2xl">Sujeito Programador</h1>
           </div>
 
           <div className="sm:absolute top-0 right-0 gap-3 flex items-center justify-center mt-2">
@@ -32,6 +39,20 @@ export default function Profile() {
 
         </section>
 
+
+        <section className="flex flex-wrap gap-5 flex-col md:flex-row">
+          <div className="flex-grow flex-wrap">
+            <FavoriteCard />
+          </div>
+
+          <div className="flex-grow flex-wrap">
+            <FavoriteCard />
+          </div>
+
+          <div className="flex-grow flex-wrap">
+            <FavoriteCard />
+          </div>
+        </section>
 
       </Container>
     </main>
