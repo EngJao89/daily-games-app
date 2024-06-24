@@ -1,10 +1,52 @@
 import Image from 'next/image';
+import type { Metadata } from "next";
 import { Container } from "@radix-ui/themes";
 import { GameCard } from "@/components/GameCard";
 import { Label } from './components/label'
 import { GameProps } from "@/utils/types/game";
 import { redirect } from "next/navigation";
 
+interface PropsParams {
+  params: {
+    id: string;
+  }
+}
+
+export async function generateMetadata({ params }: PropsParams): Promise<Metadata> {
+  try {
+    const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, { next: { revalidate: 60 } })
+      .then((res) => res.json())
+      .catch(() => {
+        return {
+          title: "DalyGames - Descubra jogos incríveis para se divertir."
+        }
+      })
+
+    return {
+      title: response.title,
+      description: `${response.description.slice(0, 100)}...`,
+      openGraph: {
+        title: response.title,
+        images: [response.image_url]
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          noimageindex: true,
+        }
+      }
+    }
+
+  } catch (err) {
+    return {
+      title: "DalyGames - Descubra jogos incríveis para se divertir."
+    }
+  }
+}
 
 async function getData(id: string) {
   try {
